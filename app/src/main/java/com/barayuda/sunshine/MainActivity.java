@@ -4,7 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.barayuda.sunshine.adapter.ListForecastAdapter;
 import com.barayuda.sunshine.model.DummyForecast;
 
@@ -15,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final static String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.rv_forecast)RecyclerView rv;
 
@@ -45,7 +54,39 @@ public class MainActivity extends AppCompatActivity {
             DummyForecast dummy = new DummyForecast("Sunday", "Rainy", 23,18,123);
             list.add(dummy);
             adapter.notifyDataSetChanged();
+
+            // testing to call
+            getDataFromAPI();
         }
+
+    }
+
+    private void getDataFromAPI() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "http://api.openweathermap.org/data/2.5/forecast/daily?appid=1641d7257cf965526b7a93202ce0199f&q=Denpasar,Bali&units=metric";
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if(error!=null) {
+                            Log.e(TAG, error.getMessage());
+                        } else {
+                            Log.e(TAG, "something error happened!!");
+                        }
+                    }
+                }
+        );
+
+        requestQueue.add(stringRequest);
 
     }
 
