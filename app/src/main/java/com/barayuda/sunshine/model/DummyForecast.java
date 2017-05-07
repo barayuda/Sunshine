@@ -20,7 +20,7 @@ public class DummyForecast {
     }
 
     public String getDay() {
-        return day;
+        return this.day;
     }
 
     public void setDay(String day) {
@@ -28,7 +28,7 @@ public class DummyForecast {
     }
 
     public String getWeather() {
-        return weather;
+        return this.weather;
     }
 
     public void setWeather(String weather) {
@@ -36,7 +36,7 @@ public class DummyForecast {
     }
 
     public int getMaxTemp() {
-        return maxTemp;
+        return this.maxTemp;
     }
 
     public void setMaxTemp(int maxTemp) {
@@ -44,7 +44,7 @@ public class DummyForecast {
     }
 
     public int getMinTemp() {
-        return minTemp;
+        return this.minTemp;
     }
 
     public void setMinTemp(int minTemp) {
@@ -52,7 +52,7 @@ public class DummyForecast {
     }
 
     public int getWeatherID() {
-        return weatherID;
+        return this.weatherID;
     }
 
     public void setWeatherID(int weatherID) {
