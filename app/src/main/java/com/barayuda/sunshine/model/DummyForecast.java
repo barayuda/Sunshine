@@ -35,16 +35,16 @@ public class DummyForecast {
         this.weather = weather;
     }
 
-    public int getMaxTemp() {
-        return this.maxTemp;
+    public String getMaxTemp() {
+        return this.maxTemp + "\u00b0";
     }
 
     public void setMaxTemp(int maxTemp) {
         this.maxTemp = maxTemp;
     }
 
-    public int getMinTemp() {
-        return this.minTemp;
+    public String getMinTemp() {
+        return this.minTemp + "\u00b0";
     }
 
     public void setMinTemp(int minTemp) {
