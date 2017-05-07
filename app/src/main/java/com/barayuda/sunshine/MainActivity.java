@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        /* Todo
+        * Buat POJO dari response ini!
+        * */
+
         requestQueue.add(stringRequest);
 
     }
