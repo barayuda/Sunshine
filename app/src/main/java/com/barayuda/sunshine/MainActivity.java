@@ -13,7 +13,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.barayuda.sunshine.adapter.ListForecastAdapter;
+import com.barayuda.sunshine.model.DailyForecast;
 import com.barayuda.sunshine.model.DummyForecast;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListForecastAdapter adapter;
     private List<DummyForecast> list = new ArrayList<>();
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +75,26 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response);
+
+                        try {
+                            DailyForecast dailyForecast = gson.fromJson(response, DailyForecast.class);
+                            Log.d(TAG, dailyForecast.toString());
+                        } catch (Exception e) {
+                            Log.e(TAG, e.getMessage());
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         if(error!=null) {
-                            Log.e(TAG, error.getMessage());
+                            //Log.e(TAG, error.getMessage());
                         } else {
                             Log.e(TAG, "something error happened!!");
                         }
                     }
                 }
         );
-
-        /* Todo
-        * Buat POJO dari response ini!
-        * */
 
         requestQueue.add(stringRequest);
 
