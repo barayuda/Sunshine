@@ -3,4 +3,5 @@
     <color name="colorPrimary">#30819f</color>
     <color name="colorPrimaryDark">#30819f</color>
     <color name="colorAccent">#306f9f</color>
+    <color name="color_tv_min_temp">#7a8e9e</color>
 </resources>

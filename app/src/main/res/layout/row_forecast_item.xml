@@ -58,7 +58,8 @@
             android:textSize="28sp"
             android:text="15\u00b0"
             android:layout_width="60dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_tv_min_temp"/>
 
     </LinearLayout>
 
