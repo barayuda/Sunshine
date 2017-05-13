@@ -10,6 +10,7 @@ import com.barayuda.sunshine.R;
 import com.barayuda.sunshine.model.DailyForecast;
 import com.barayuda.sunshine.model.DummyForecast;
 import com.barayuda.sunshine.model.WeatherItem;
+import com.barayuda.sunshine.utilities.SunshineWeatherUtils;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -38,7 +39,15 @@ public class ForecastItemViewHolder extends RecyclerView.ViewHolder {
         weatherDesc.setText(data.getWeather());
         maxTemp.setText(String.valueOf(data.getMaxTemp()));
         minTemp.setText(String.valueOf(data.getMinTemp()));*/
-        day.setText("Sunday");
+
+        img.setImageResource(
+                SunshineWeatherUtils
+                    .getSmallArtResourceIdForWeatherCondition(
+                            data.getWeather().get(0).getId()
+                    )
+        );
+
+        day.setText(data.getReadableTime(data.getDt()));
         weatherDesc.setText(data.getWeather().get(0).getDescription());
         maxTemp.setText(data.getTemp().getResolvedTemp(data.getTemp().getMax()));
         minTemp.setText(data.getTemp().getResolvedTemp(data.getTemp().getMin()));

@@ -1,5 +1,8 @@
 package com.barayuda.sunshine.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,5 +52,11 @@ public class WeatherItem {
                 ", temp=" + temp +
                 ", weather=" + weather +
                 '}';
+    }
+
+    public String getReadableTime(long dt) {
+        Date date = new Date(this.dt * 1000L);
+        DateFormat dateFormat = new SimpleDateFormat("EEEE");
+        return dateFormat.format(date);
     }
 }

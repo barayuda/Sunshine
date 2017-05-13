@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getDataFromAPI() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "http://api.openweathermap.org/data/2.5/forecast/daily?appid=1641d7257cf965526b7a93202ce0199f&q=Denpasar,Bali&units=metric";
+        final String url = "http://api.openweathermap.org/data/2.5/forecast/daily?appid=1641d7257cf965526b7a93202ce0199f&q=India&units=metric";
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
