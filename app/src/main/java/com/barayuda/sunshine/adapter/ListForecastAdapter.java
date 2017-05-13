@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.barayuda.sunshine.R;
 import com.barayuda.sunshine.model.DummyForecast;
+import com.barayuda.sunshine.model.WeatherItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class ListForecastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<DummyForecast> list = new ArrayList<>();
+    private List<WeatherItem> list = new ArrayList<>();
 
-    public ListForecastAdapter(List<DummyForecast> list) {
+    public ListForecastAdapter(List<WeatherItem> list) {
         this.list = list;
     }
 

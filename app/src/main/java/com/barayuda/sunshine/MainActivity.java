@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.barayuda.sunshine.adapter.ListForecastAdapter;
 import com.barayuda.sunshine.model.DailyForecast;
 import com.barayuda.sunshine.model.DummyForecast;
+import com.barayuda.sunshine.model.WeatherItem;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rv_forecast)RecyclerView rv;
 
     private ListForecastAdapter adapter;
-    private List<DummyForecast> list = new ArrayList<>();
+    private List<WeatherItem> list = new ArrayList<>();
     private Gson gson = new Gson();
 
     @Override
@@ -48,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        populateData();
+        //populateData();
 
+        getDataFromAPI();
     }
 
-    private void populateData() {
+    /*private void populateData() {
         for (int i = 0; i < 10; i++) {
             DummyForecast dummy = new DummyForecast("Sunday", "Rainy", 23,18,123);
             list.add(dummy);
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             getDataFromAPI();
         }
 
-    }
+    }*/
 
     private void getDataFromAPI() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -79,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             DailyForecast dailyForecast = gson.fromJson(response, DailyForecast.class);
                             Log.d(TAG, dailyForecast.toString());
+
+                            for (WeatherItem item : dailyForecast.getList()) {
+                                list.add(item);
+                            }
+                            adapter.notifyDataSetChanged();
+
                         } catch (Exception e) {
                             Log.e(TAG, e.getMessage());
                         }
